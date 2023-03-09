@@ -16,7 +16,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: artifact
-          path: *.txt
+          path: ~/*.txt
   use_artifact:
     runs-on: ubuntu-latest
     steps:
@@ -25,4 +25,4 @@ jobs:
         with:
           name: artifact
       - name: Output Artifact
-        run: cat *.txt
+        run: cat ./*.txt
