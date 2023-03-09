@@ -1,0 +1,28 @@
+name: Artifacts
+on:
+  push:
+    branches:
+      - master
+      - main
+jobs:
+  produce_artifact:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v3
+      - name: Build
+        run: bash script.sh
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifact
+          path: *.txt
+  use_artifact:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: artifact
+      - name: Output Artifact
+        run: cat *.txt
